@@ -29,7 +29,7 @@ pipeline {
         stage('Docker Build & Push') {
             steps {
                 withCredentials([usernamePassword(
-                    credentialsId: 'dockerhub_info', // 반드시 Jenkins 설치시 New credentials 에서 Username with password 에서 입력하였던 ID 이름을 넣어야 함. 
+                    credentialsId: 'dockerhub_info', // 반드시 Jenkins 설치시 New credentials 에서 Username with password 에서 입력하였던 ID 이름을 넣어야 함.
                     usernameVariable: 'DOCKER_USER', // Jenkins 내부에서 쓰는 환경 변수 이름이므로 그대로 써야함. 바꾸면 안됨. 
                     passwordVariable: 'DOCKER_PASS'  // Jenkins 내부에서 쓰는 환경 변수 이름이므로 그대로 써야함. 바꾸면 안됨. 
                 )]) {
@@ -45,7 +45,7 @@ pipeline {
 
         stage('Deploy to Server') {
             steps {
-                sshagent(['SERVER_SSH_KEY']) {  // 반드시 Jenkins 설치시 New credentials 에서 SSH Username with private key 에서 입력하였던 ID 이름을 넣어야 함.
+                sshagent(['SERVER_SSH_KEY']) {  // 반드시 Jenkins 설치시 New credentials 에서 SSH Username with private key 에서 입력하였던 ID 이름을 넣어야 함. 
                     sh """
                         ssh -o StrictHostKeyChecking=no ubuntu@$SERVER_IP '
                             docker stop $CONTAINER_NAME || true
